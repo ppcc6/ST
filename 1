@@ -1,0 +1,38 @@
+HTML CODE:
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login Page</title>
+</head>
+<body>
+  <h1>Login Page</h1>
+  <form id="loginForm">
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username"><br><br>
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password"><br><br>
+    <input type="submit" value="Login" onclick="validateLogin()">
+  </form>
+  <div id="error"></div>
+</body>
+</html>
+
+JAVASCRIPT CODE:
+
+function validateLogin() {
+  var username = document.getElementById("username").value;
+  var password = document.getElementById("password").value;
+
+  if (username === "" || password === "") {
+    document.getElementById("error").innerHTML = "Please enter both username and password";
+    return false;
+  } else if (username === "admin" && password === "password123") {
+    document.getElementById("error").innerHTML = "";
+    alert("Login successful!");
+    return true;
+  } else {
+    document.getElementById("error").innerHTML = "Invalid username or password";
+    return false;
+  }
+}
