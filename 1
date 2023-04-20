@@ -1,29 +1,41 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Login Page</title>
-</head>
-<body>
-  <h1>Login Page</h1>
-  <form id="loginForm">
-    <label>Username:<input type="text" name="username"></label>
-    <label>Password:<input type="password" id="password" name="password"></label>
-    <input type="submit" value="Login">
-  </form>
-  <div id="error"></div>
+  <head>
+    <title>Login Page</title>
+  </head>
+  <body>
+    <h1>Login Page</h1>
+    <form id="loginForm">
+      <label>Username:<input type="text" name="username"></label>
+      <label>Password:<input type="password" id="password" name="password"></label>
+      <input type="submit" value="Login" onclick="validateForm()">
+    </form>
+    <div id="error"></div>
 
-  <script>
-    var loginForm = document.getElementById("loginForm");
-    loginForm.addEventListener("submit", function(event) {
-      event.preventDefault();
-      var password = document.getElementById("password").value;
-      var regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
-      if (regex.test(password)) {
-        document.getElementById("error").innerHTML = "Successful Login!";
-      } else {
-        document.getElementById("error").innerHTML = "Failed Login! Password must be at least 8 characters long, contain at least one uppercase letter, one lowercase letter, and one number.";
+    <script>
+      function validateForm() {
+        if (!validatePassword()) {
+          return false;
+        }
+        validateLogin();
       }
-    });
-  </script>
-</body>
+
+      function validatePassword() {
+        var password = document.getElementById("password").value;
+        var regex = /^(?=.*[A-Z])(?=.*\d).{8,}$/;
+
+        if (!regex.test(password)) {
+          alert("Password must be at least 8 characters long, contain at least one uppercase letter, and one number");
+          return false;
+        }
+
+        return true;
+      }
+
+      function validateLogin() {
+        // Your login validation code here
+        alert("Login successful!");
+      }
+    </script>
+  </body>
 </html>
