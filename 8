@@ -1,0 +1,14 @@
+import time
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+d = webdriver.Chrome()
+d.get("https://www.amazon.in/")
+time.sleep(2)
+s_ = d.find_element("name",'field-keywords')
+s_.send_keys("Example")
+time.sleep(1)
+s_.submit()
+time.sleep(2)
+c= d.find_element("xpath", "/html/body/div[1]/div[2]/div[1]/div[1]/div/span[1]/div[1]/div[4]/div/div/div/div/div[2]/div[1]/h2/a/span")
+time.sleep(2)
+c.click()
