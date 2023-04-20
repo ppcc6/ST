@@ -8,31 +8,33 @@ HTML CODE:
 <body>
   <h1>Login Page</h1>
   <form id="loginForm">
-    <label for="username">Username:</label>
-    <input type="text" id="username" name="username"><br><br>
-    <label for="password">Password:</label>
-    <input type="password" id="password" name="password"><br><br>
-    <input type="submit" value="Login" onclick="validateLogin()">
+    <label>Username:<input type="text" name="username"></label>
+    <label>Password:<input type="password" id="password" name="password"></label>
+    <input type="submit" value="Login" onclick="validateForm()">
   </form>
   <div id="error"></div>
-</body>
-</html>
 
 JAVASCRIPT CODE:
 
-function validateLogin() {
-  var username = document.getElementById("username").value;
-  var password = document.getElementById("password").value;
+  <script>
+    function validateForm() {
+      if (!validatePassword()) {
+        return false;
+      }
+      validateLogin();
+    }
 
-  if (username === "" || password === "") {
-    document.getElementById("error").innerHTML = "Please enter both username and password";
-    return false;
-  } else if (username === "admin" && password === "password123") {
-    document.getElementById("error").innerHTML = "";
-    alert("Login successful!");
-    return true;
-  } else {
-    document.getElementById("error").innerHTML = "Invalid username or password";
-    return false;
-  }
-}
+    function validatePassword() {
+      var password = document.getElementById("password").value;
+      var regex = /^(?=.*[A-Z])(?=.*\d).{8,}$/;
+
+      if (!regex.test(password)) {
+        alert("Password must be at least 8 characters long, contain at least one uppercase letter, and one number");
+        return false;
+      }
+
+      return true;
+    }
+  </script>
+</body>
+</html>
