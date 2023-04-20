@@ -1,5 +1,5 @@
 stack = []
-print("20dx11")
+print("20dx")
 while True:
     print("Select operation - 1.Push, 2.Pop, 3.Size or 4.Quit")
     choice = input()
